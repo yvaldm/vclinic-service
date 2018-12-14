@@ -81,7 +81,7 @@
                 <groupId>com.yvaldm</groupId>
                 <artifactId>maven-jooq-codegen-plugin</artifactId>
                 <configuration>
-                    <dbName>testdb</dbName>
+                    <dbName>public</dbName>
                 </configuration>
                 <executions>
                     <execution>
