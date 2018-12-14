@@ -88,14 +88,7 @@
                         <id>start-pgsql</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-pgsql</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
