@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -43,18 +43,18 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!--dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
                 <version>${spring-boot.version}</version>
-            </dependency>
+            </dependency-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
 
-            <dependency>
+            <!--dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-client</artifactId>
                 <version>5.1.2.RELEASE</version>
@@ -63,7 +63,7 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-jose</artifactId>
                 <version>5.1.2.RELEASE</version>
-            </dependency>
+            </dependency-->
 
             <dependency>
                 <groupId>com.yvaldm.vclinic</groupId>
@@ -117,12 +117,12 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
-            <dependency>
+            <!--dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-test</artifactId>
                 <scope>test</scope>
                 <version>${spring-boot.version}</version>
-            </dependency>
+            </dependency-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
@@ -134,11 +134,11 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
+                <!--plugin>
                     <groupId>com.yvaldm</groupId>
                     <artifactId>maven-jooq-codegen-plugin</artifactId>
                     <version>${com.yvaldm.maven.jooq.codegen.version}</version>
-                </plugin>
+                </plugin-->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
