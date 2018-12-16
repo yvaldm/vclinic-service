@@ -1,6 +1,6 @@
-package com.yvaldm.service.impl;
+package com.yvaldm.vclinic.service.impl;
 
-import com.yvaldm.service.AuthService;
+import com.yvaldm.vclinic.service.AuthService;
 
 /**
  * @author valery.yakovlev

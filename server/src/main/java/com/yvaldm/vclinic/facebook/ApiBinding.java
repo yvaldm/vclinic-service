@@ -1,4 +1,4 @@
-package com.yvaldm.util.social.facebook;
+package com.yvaldm.vclinic.facebook;
 
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;

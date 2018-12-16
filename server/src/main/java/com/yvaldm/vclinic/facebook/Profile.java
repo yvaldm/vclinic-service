@@ -1,4 +1,4 @@
-package com.yvaldm.util.social.facebook;
+package com.yvaldm.vclinic.facebook;
 
 public class Profile {
 
