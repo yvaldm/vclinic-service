@@ -11,7 +11,7 @@ public class Facebook extends ApiBinding {
     }
 
     public Profile getProfile() {
-        return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me", Profile.class);
+        return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me?fields=id,name,email", Profile.class);
     }
 
     public List<Post> getFeed() {
