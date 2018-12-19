@@ -1,4 +1,6 @@
-package com.yvaldm.vclinic.service;
+package com.yvaldm.vclinic.service.impl;
+
+import com.yvaldm.vclinic.service.UserService;
 
 /**
  * @author valeryyakovlev
