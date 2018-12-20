@@ -1,5 +1,7 @@
 package com.yvaldm.vclinic.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yvaldm.vclinic.api.SignupRequest;
 import com.yvaldm.vclinic.config.TestEmbeddedConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,17 +24,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureMockMvc
 @WithMockUser
-public class RegistrationControllerIT {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void shouldCreateRegistrationApplication() throws Exception {
 
+        // arrange
+        String body = objectMapper.writeValueAsString(new SignupRequest("sample@mail.ru", "qwerty"));
+
         // act
-        mvc.perform(post("/registration/apply")
-                            .contentType(MediaType.APPLICATION_JSON_UTF8))
+        mvc.perform(post("/user/signup")
+                            .contentType(MediaType.APPLICATION_JSON_UTF8)
+                            .content(body))
                 .andExpect(status().isOk());
     }
 }
