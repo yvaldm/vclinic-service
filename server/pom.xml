@@ -128,7 +128,7 @@
                     <user>postgres</user>
                 </configuration>
             </plugin-->
-            <!--plugin>
+            <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <version>${jooq.version}</version>
@@ -141,23 +141,29 @@
                         </goals>
                         <configuration>
                             <jdbc>
-                                <url>jdbc:postgresql://localhost:30777/public</url>
-                                <user>postgres</user>
+                                <url>jdbc:postgresql://localhost:5432/postgres</url>
+                                <user>valeryyakovlev</user>
                             </jdbc>
                             <generator>
                                 <generate>
                                     <deprecated>false</deprecated>
                                     <instanceFields>true</instanceFields>
                                 </generate>
+
+                                <database>
+                                    <name>org.jooq.meta.postgres.PostgresDatabase</name>
+                                    <includes>.*</includes>
+                                    <inputSchema>public</inputSchema>
+                                </database>
                                 <target>
-                                    <packageName>com.yvaldm.vclinic.server.jooq</packageName>
+                                    <packageName>com.yvaldm.vclinic.dao.jooq</packageName>
                                     <directory>target/generated-sources/jooq-pg-java</directory>
                                 </target>
                             </generator>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin-->
+            </plugin>
         </plugins>
     </build>
 </project>
