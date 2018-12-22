@@ -37,4 +37,12 @@ public class UserRegistrationDaoImpl implements UserRegistrationDao {
             .where(Tables.USER_REGISTRATION.EMAIL.eq(email))
             .fetchOptionalInto(UserRegistration.class);
     }
+
+    @Override
+    public void delete(long id) {
+
+        dslContext.deleteFrom(Tables.USER_REGISTRATION)
+            .where(Tables.USER_REGISTRATION.ID.eq(id))
+            .execute();
+    }
 }

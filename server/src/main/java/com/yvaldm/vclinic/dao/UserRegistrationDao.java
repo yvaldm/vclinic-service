@@ -14,4 +14,6 @@ public interface UserRegistrationDao {
     void insert(String email, String pwdHash, int code);
 
     Optional<UserRegistration> findByEmail(String email);
+
+    void delete(long id);
 }
