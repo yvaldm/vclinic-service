@@ -3,6 +3,7 @@ package com.yvaldm.vclinic.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yvaldm.vclinic.api.SignupRequest;
 import com.yvaldm.vclinic.config.TestEmbeddedConfig;
+import com.yvaldm.vclinic.dao.UserRegistrationDao;
 import com.yvaldm.vclinic.dao.jooq.Tables;
 import com.yvaldm.vclinic.dao.jooq.tables.records.UserRegistrationRecord;
 import org.jooq.DSLContext;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,6 +31,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WithMockUser
 public class UserControllerTest {
+
+    @Autowired
+    private UserRegistrationDao userRegistrationDao;
 
     @Autowired
     private MockMvc mvc;
@@ -57,10 +62,16 @@ public class UserControllerTest {
             .fetchOne();
         assertThat(rec.getCode()).isNotNull();
     }
-//
-//    @Test
-//    public void shouldConfirmRegistration() throws Exception {
-//
-//
-//    }
+
+    @Test
+    public void shouldConfirmRegistration() throws Exception {
+
+        // arrange
+        userRegistrationDao.insert("test@mail.ru", "some hash", 323332);
+
+        // act
+        mvc.perform(get("/user/signup/confirm?email=test@mail.ru&code=323332")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
+    }
 }

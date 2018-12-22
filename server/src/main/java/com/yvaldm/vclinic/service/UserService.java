@@ -6,4 +6,6 @@ package com.yvaldm.vclinic.service;
 public interface UserService {
 
     void signup(String email, String password);
+
+    void confirm(String email, int code);
 }
