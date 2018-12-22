@@ -34,15 +34,21 @@ public class UserServiceImplTest {
     @Test
     public void shouldCreateUserRegistrationRequest() {
 
+        // precondition
+        UserRegistrationRecord rec = dslContext.selectFrom(Tables.USER_REGISTRATION)
+            .where(Tables.USER_REGISTRATION.EMAIL.eq("some@mail.ru"))
+            .fetchOne();
+        assertThat(rec).isNull();
+
         // act
         userService.signup("some@mail.ru", "s3cr3t");
 
         // assert
-        UserRegistrationRecord userRegistrationRecord = dslContext.selectFrom(Tables.USER_REGISTRATION)
+        UserRegistrationRecord result = dslContext.selectFrom(Tables.USER_REGISTRATION)
             .where(Tables.USER_REGISTRATION.EMAIL.eq("some@mail.ru"))
             .fetchOne();
 
-        assertThat(userRegistrationRecord.getCode()).isNotNull();
-        assertThat(userRegistrationRecord.getPassword()).isNotNull();
+        assertThat(result.getCode()).isNotNull();
+        assertThat(result.getPassword()).isNotNull();
     }
 }

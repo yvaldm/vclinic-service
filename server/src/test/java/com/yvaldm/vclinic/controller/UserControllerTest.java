@@ -3,6 +3,9 @@ package com.yvaldm.vclinic.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yvaldm.vclinic.api.SignupRequest;
 import com.yvaldm.vclinic.config.TestEmbeddedConfig;
+import com.yvaldm.vclinic.dao.jooq.Tables;
+import com.yvaldm.vclinic.dao.jooq.tables.records.UserRegistrationRecord;
+import org.jooq.DSLContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,6 +36,9 @@ public class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private DSLContext dslContext;
+
     @Test
     public void shouldCreateRegistrationApplication() throws Exception {
 
@@ -40,8 +47,20 @@ public class UserControllerTest {
 
         // act
         mvc.perform(post("/user/signup")
-                            .contentType(MediaType.APPLICATION_JSON_UTF8)
-                            .content(body))
-                .andExpect(status().isOk());
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(body))
+            .andExpect(status().isOk());
+
+        // assert
+        UserRegistrationRecord rec = dslContext.selectFrom(Tables.USER_REGISTRATION)
+            .where(Tables.USER_REGISTRATION.EMAIL.eq("sample@mail.ru"))
+            .fetchOne();
+        assertThat(rec.getCode()).isNotNull();
     }
+//
+//    @Test
+//    public void shouldConfirmRegistration() throws Exception {
+//
+//
+//    }
 }
