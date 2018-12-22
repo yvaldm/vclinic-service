@@ -142,7 +142,8 @@
                         <configuration>
                             <jdbc>
                                 <url>jdbc:postgresql://localhost:5432/postgres</url>
-                                <user>valeryyakovlev</user>
+                                <user>postgres</user>
+                                <password>postgres</password>
                             </jdbc>
                             <generator>
                                 <generate>
