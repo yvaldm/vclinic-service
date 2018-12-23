@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
             .disable();
 
         http.authorizeRequests()
-            .antMatchers("/user/signup")
+            .antMatchers("/user/signup", "/user/signup/confirm")
             .permitAll()
             .and()
             .authorizeRequests()
