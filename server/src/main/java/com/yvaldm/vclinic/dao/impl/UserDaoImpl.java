@@ -30,6 +30,6 @@ public class UserDaoImpl implements UserDao {
 
         return dslContext.selectFrom(Tables.USER_BASIC)
             .where(Tables.USER_BASIC.EMAIL.eq(email))
-            .fetchOptional(u -> new User(u.getEmail(), u.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE"))));
+            .fetchOptional(u -> new User(u.getEmail(), u.getPassword(), Arrays.asList(new SimpleGrantedAuthority("USER"))));
     }
 }

@@ -1,13 +1,12 @@
 package com.yvaldm.vclinic.service.impl;
 
-import com.google.common.hash.Hashing;
 import com.yvaldm.vclinic.dao.UserDao;
 import com.yvaldm.vclinic.dao.UserRegistrationDao;
 import com.yvaldm.vclinic.entity.UserRegistration;
 import com.yvaldm.vclinic.exceptions.NotFoundException;
 import com.yvaldm.vclinic.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
@@ -15,20 +14,22 @@ import java.util.Random;
  */
 public class UserServiceImpl implements UserService {
 
-    private final UserRegistrationDao userRegistrationDao;
-    private final UserDao userDao;
-
     private final static Random RANDOM = new Random();
 
-    public UserServiceImpl(UserRegistrationDao userRegistrationDao, UserDao userDao) {
+    private final UserRegistrationDao userRegistrationDao;
+    private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRegistrationDao userRegistrationDao, UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userRegistrationDao = userRegistrationDao;
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void signup(String email, String password) {
         int code = RANDOM.nextInt(999999);
-        String hash = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+        String hash = passwordEncoder.encode(password);
         userRegistrationDao.insert(email, hash, code);
     }
 

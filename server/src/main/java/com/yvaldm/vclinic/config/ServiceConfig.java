@@ -6,6 +6,7 @@ import com.yvaldm.vclinic.service.UserService;
 import com.yvaldm.vclinic.service.impl.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * VClinic Application Configuration
@@ -16,7 +17,8 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfig {
 
     @Bean
-    public UserService userService(UserRegistrationDao userRegistrationDao, UserDao userDao) {
-        return new UserServiceImpl(userRegistrationDao, userDao);
+    public UserService userService(UserRegistrationDao userRegistrationDao, UserDao userDao,
+                                   PasswordEncoder passwordEncoder) {
+        return new UserServiceImpl(userRegistrationDao, userDao, passwordEncoder);
     }
 }
