@@ -3,6 +3,8 @@ package com.yvaldm.vclinic.service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Service for managing users
+ *
  * @author valeryyakovlev
  */
 public interface UserService {

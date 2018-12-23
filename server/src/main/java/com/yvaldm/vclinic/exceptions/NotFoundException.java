@@ -11,4 +11,9 @@ public class NotFoundException extends BadRequestException {
     public static NotFoundException userRegistrationNotFound() {
         return new NotFoundException("USER_REGISTRATION_NOT_FOUND", "User registration entry not found");
     }
+
+    public static NotFoundException userNotFound() {
+        return new NotFoundException("USER_NOT_FOUND", "User not found");
+    }
+
 }
