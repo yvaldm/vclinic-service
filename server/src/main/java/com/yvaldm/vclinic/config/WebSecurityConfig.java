@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
             .formLogin()
             //.loginPage("/login.html")
             .loginProcessingUrl("/login_process")
+            .defaultSuccessUrl("http://localhost:4200/home")
             .and()
             .authorizeRequests()
             .anyRequest()

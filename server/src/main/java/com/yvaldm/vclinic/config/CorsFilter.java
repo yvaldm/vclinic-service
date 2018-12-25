@@ -1,6 +1,8 @@
 package com.yvaldm.vclinic.config;
 
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,11 +19,12 @@ import java.io.IOException;
  *
  * @author valeryyakovlev
  */
-@Component
+@Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
